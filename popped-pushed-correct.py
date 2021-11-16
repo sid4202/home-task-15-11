@@ -12,6 +12,9 @@ class Stack:
         return self.stack.pop()
 
     def top(self):
+        if len(self.stack) == 0:
+            return None
+        
         return self.stack[-1]
 
     def size(self):
@@ -23,12 +26,11 @@ class Solution(object):
         stack = Stack()
         i = 0
         j = 0
-        while i != len(pushed) - 1:
+        while i < len(pushed):
             stack.push(pushed[i])
-            while stack.top() == popped[j]:
+            while j < len(popped) and stack.top() == popped[j]:
                 stack.pop()
                 j += 1
-
             i += 1
 
         return len(stack.stack) == 0
